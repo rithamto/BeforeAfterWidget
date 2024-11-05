@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/style_1/style_1.dart';
+import 'package:untitled/style_2/style_2.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,12 +12,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Before After Widget',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Before After Widget Demo'),
     );
   }
 }
@@ -30,6 +33,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final imgUrl =
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4IkRU-sN-SSQohf8R1UlfkZS4TFoPeXVgkw&s";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,42 +44,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Stack(
-          alignment: Alignment.centerLeft,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ColorFiltered(
-              colorFilter:
-                  const ColorFilter.mode(Colors.green, BlendMode.hardLight),
-              child: Image.network(
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4IkRU-sN-SSQohf8R1UlfkZS4TFoPeXVgkw&s",
-                fit: BoxFit.cover,
-              ),
-            ),
-            SizedBox(
-              width: 300,
-              height: 165,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  Image.network(
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4IkRU-sN-SSQohf8R1UlfkZS4TFoPeXVgkw&s",
-                    fit: BoxFit.cover,
-                  ),
-                  Container(
-                    height: 165,
-                    width: 4,
-                    color: Colors.red,
-                  ),
-                  Opacity(
-                    opacity: 0,
-                    child: Image.network(
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4IkRU-sN-SSQohf8R1UlfkZS4TFoPeXVgkw&s",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ],
-              ),
-            )
+            Style1(imgUrl: imgUrl),
+            Style2(imgUrl: imgUrl, initialValue: 5,),
           ],
         ),
       ),
